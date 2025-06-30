@@ -1,5 +1,5 @@
 import about_img from './about_img.png';
-import appointment_img from './appointment_img.png';
+import appointment_img from './appointment_img.jpg';
 import arrow_icon from './arrow_icon.png';
 import chat_icon from './chat_icon.png';
 import contact_img from './contact_img.png';
@@ -64,15 +64,15 @@ export const assets = {
 
 export const typeData = [
     {
-        property: 'House',
+        type: 'House',
         image: home
     },
     {
-        property: 'Vila',
+        type: 'Villa',
         image: vila
     },
     {
-        property: 'Appartment',
+        type: 'Apartment',
         image: appartment
     },
 ]
@@ -89,7 +89,8 @@ export const properties = [
             line2: 'Beverly Hills, CA'
         },
         description: 'A luxurious villa with modern amenities, spacious rooms, and a private pool. Perfect for a comfortable and elegant lifestyle.',
-        features: ['Private Pool', 'Garden', 'Garage', '5 Bedrooms', '3 Bathrooms']
+        features: ['Private Pool', 'Garden', 'Garage', '5 Bedrooms', '3 Bathrooms'],
+        since: '2023'
     },
     {
         _id: 'prop2',
@@ -102,7 +103,8 @@ export const properties = [
             line2: 'Downtown, New York'
         },
         description: 'A stylish apartment located in the heart of the city, offering convenience and modern living.',
-        features: ['Gym Access', 'Rooftop Terrace', '2 Bedrooms', '2 Bathrooms']
+        features: ['Gym Access', 'Rooftop Terrace', '2 Bedrooms', '2 Bathrooms'],
+        since: '2022'
     },
     {
         _id: 'prop3',
@@ -115,7 +117,8 @@ export const properties = [
             line2: 'Suburban Area, Texas'
         },
         description: 'A cozy house with a beautiful backyard, perfect for families looking for a peaceful neighborhood.',
-        features: ['Backyard', 'Garage', '3 Bedrooms', '2 Bathrooms']
+        features: ['Backyard', 'Garage', '3 Bedrooms', '2 Bathrooms'],
+        since: '2021'
     },
     {
         _id: 'prop4',
@@ -128,7 +131,8 @@ export const properties = [
             line2: 'Miami, FL'
         },
         description: 'A stunning villa located right on the beach, offering breathtaking views and luxurious amenities.',
-        features: ['Beach Access', 'Private Pool', '4 Bedrooms', '3 Bathrooms']
+        features: ['Beach Access', 'Private Pool', '4 Bedrooms', '3 Bathrooms'],
+        since: '2020'
     },
     {
         _id: 'prop5',
@@ -141,7 +145,8 @@ export const properties = [
             line2: 'Chicago, IL'
         },
         description: 'An exclusive penthouse suite with panoramic city views and high-end finishes.',
-        features: ['Rooftop Pool', 'Gym Access', '3 Bedrooms', '3 Bathrooms']
+        features: ['Rooftop Pool', 'Gym Access', '3 Bedrooms', '3 Bathrooms'],
+        since: '2019'
     },
     {
         _id: 'prop6',
@@ -154,7 +159,8 @@ export const properties = [
             line2: 'Austin, TX'
         },
         description: 'A spacious family home located in a quiet suburban neighborhood.',
-        features: ['Backyard', 'Garage', '4 Bedrooms', '2 Bathrooms']
+        features: ['Backyard', 'Garage', '4 Bedrooms', '2 Bathrooms'],
+        since: '2021'
     },
     {
         _id: 'prop7',
@@ -167,7 +173,8 @@ export const properties = [
             line2: 'Aspen, CO'
         },
         description: 'A peaceful retreat in the mountains, perfect for nature lovers.',
-        features: ['Mountain Views', 'Fireplace', '3 Bedrooms', '2 Bathrooms']
+        features: ['Mountain Views', 'Fireplace', '3 Bedrooms', '2 Bathrooms'],
+        since: '2022'
     },
     {
         _id: 'prop8',
@@ -180,7 +187,8 @@ export const properties = [
             line2: 'Seattle, WA'
         },
         description: 'A modern loft in the heart of the city, ideal for urban living.',
-        features: ['Open Floor Plan', 'Gym Access', '2 Bedrooms', '1 Bathroom']
+        features: ['Open Floor Plan', 'Gym Access', '2 Bedrooms', '1 Bathroom'],
+        since: '2023'
     },
     {
         _id: 'prop9',
@@ -193,7 +201,8 @@ export const properties = [
             line2: 'Nashville, TN'
         },
         description: 'A charming cottage in the countryside, surrounded by nature.',
-        features: ['Garden', 'Fireplace', '2 Bedrooms', '1 Bathroom']
+        features: ['Garden', 'Fireplace', '2 Bedrooms', '1 Bathroom'],
+        since: '2020'
     },
     {
         _id: 'prop10',
@@ -206,7 +215,8 @@ export const properties = [
             line2: 'Orlando, FL'
         },
         description: 'A luxurious villa with direct access to the lake and stunning views.',
-        features: ['Lake Access', 'Private Dock', '5 Bedrooms', '4 Bathrooms']
+        features: ['Lake Access', 'Private Dock', '5 Bedrooms', '4 Bathrooms'],
+        since: '2021'
     },
     {
         _id: 'prop11',
@@ -219,7 +229,8 @@ export const properties = [
             line2: 'San Francisco, CA'
         },
         description: 'A compact studio apartment perfect for singles or couples.',
-        features: ['Compact Design', 'City Views', '1 Bedroom', '1 Bathroom']
+        features: ['Compact Design', 'City Views', '1 Bedroom', '1 Bathroom'],
+        since: '2023'
     },
     {
         _id: 'prop12',
@@ -232,7 +243,8 @@ export const properties = [
             line2: 'Charleston, SC'
         },
         description: 'A grand mansion with historic charm and modern upgrades.',
-        features: ['Large Garden', 'Library', '6 Bedrooms', '5 Bathrooms']
+        features: ['Large Garden', 'Library', '6 Bedrooms', '5 Bathrooms'],
+        since: '2018'
     },
     {
         _id: 'prop13',
@@ -245,7 +257,8 @@ export const properties = [
             line2: 'Portland, OR'
         },
         description: 'A sustainable villa with eco-friendly features and modern design.',
-        features: ['Solar Panels', 'Rainwater Harvesting', '4 Bedrooms', '3 Bathrooms']
+        features: ['Solar Panels', 'Rainwater Harvesting', '4 Bedrooms', '3 Bathrooms'],
+        since: '2022'
     },
     {
         _id: 'prop14',
@@ -258,7 +271,8 @@ export const properties = [
             line2: 'Atlanta, GA'
         },
         description: 'A high-end condo with premium amenities and city views.',
-        features: ['Gym Access', 'Swimming Pool', '2 Bedrooms', '2 Bathrooms']
+        features: ['Gym Access', 'Swimming Pool', '2 Bedrooms', '2 Bathrooms'],
+        since: '2023'
     },
     {
         _id: 'prop15',
@@ -271,6 +285,7 @@ export const properties = [
             line2: 'Kansas City, MO'
         },
         description: 'A spacious farmhouse surrounded by open fields and fresh air.',
-        features: ['Barn', 'Large Yard', '3 Bedrooms', '2 Bathrooms']
+        features: ['Barn', 'Large Yard', '3 Bedrooms', '2 Bathrooms'],
+        since: '2020'
     }
 ];

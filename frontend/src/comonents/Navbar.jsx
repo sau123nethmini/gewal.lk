@@ -22,7 +22,7 @@ const Navbar = () => {
             <hr/>
         </NavLink>
 
-        <NavLink to='/Properties' 
+        <NavLink to='/property' 
         className={({ isActive }) =>
             `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
           }>
@@ -30,7 +30,7 @@ const Navbar = () => {
             <hr/>
         </NavLink>
 
-        <NavLink to='/About'
+        <NavLink to='/about'
         className={({ isActive }) =>
             `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
           }>
@@ -38,7 +38,7 @@ const Navbar = () => {
             <hr/>
         </NavLink>
 
-        <NavLink to='/Contact'
+        <NavLink to='/contact'
         className={({ isActive }) =>
             `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
           }>
@@ -72,7 +72,7 @@ const Navbar = () => {
 
         <img 
         onClick={()=>setShowMenu(true)}
-        className='w-4 md:hidden' src={assets.menu_icon} alt="" />
+        className='w-10 md:hidden' src={assets.menu} alt="" />
 
         {/* Mobile Menu */}
 
@@ -87,15 +87,15 @@ const Navbar = () => {
               <p className='px-4 py-2 rounded inline-block'>Home</p>
             </NavLink>
 
-            <NavLink to='/Properties' onClick={()=>setShowMenu(false)}>
+            <NavLink to='/property' onClick={()=>setShowMenu(false)}>
               <p className='px-4 py-2 rounded inline-block'>All Property</p>
             </NavLink>
 
-            <NavLink to='/About' onClick={()=>setShowMenu(false)}>
+            <NavLink to='/about' onClick={()=>setShowMenu(false)}>
               <p className='px-4 py-2 rounded inline-block'>About</p>
             </NavLink>
 
-            <NavLink to='/Contact' onClick={()=>setShowMenu(false)}>
+            <NavLink to='/contact' onClick={()=>setShowMenu(false)}>
               <p className='px-4 py-2 rounded inline-block'>Contact</p>
             </NavLink>
           </ul>
