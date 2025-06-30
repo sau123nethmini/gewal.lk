@@ -23,8 +23,10 @@ const Contact = () => {
   return (
     <div className="max-w-4xl mx-auto px-4">
       {/* Heading */}
-      <div className="text-center text-4xl font-extrabold pt-12 tracking-tight bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-md">
-        CONTACT <span className="text-white bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">US</span>
+      <div className="text-center text-4xl font-extrabold pt-12 tracking-tight">
+      <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-md">
+          CONTACT US
+        </span>
       </div>
 
       {/* Content Section */}
@@ -42,7 +44,7 @@ const Contact = () => {
         {/* Details */}
         <div className="flex flex-col justify-center gap-7 md:w-2/3 text-lg text-gray-900/90">
           <div>
-            <p className="font-semibold text-lg text-indigo-700 mb-1 tracking-wide">
+            <p className="font-semibold text-lg text-purple-500 mb-1 tracking-wide">
               OUR OFFICE
             </p>
             <p className="text-gray-600 leading-relaxed">
@@ -57,13 +59,13 @@ const Contact = () => {
             </p>
           </div>
           <div>
-            <p className="font-semibold text-lg text-indigo-700 mb-1 tracking-wide">
+            <p className="font-semibold text-lg text-purple-500 mb-1 tracking-wide">
               CAREERS AT PRESCRIPTO
             </p>
             <p className="text-gray-700 mb-3">
               Learn more about our teams and job openings.
             </p>
-            <button className="border border-indigo-600 px-8 py-3 rounded-xl font-semibold text-indigo-600 bg-white/50 backdrop-blur hover:bg-gradient-to-r hover:from-purple-500 hover:to-indigo-500 hover:text-white transition-all duration-300 shadow-md">
+            <button className="border border-purple-600 px-8 py-3 rounded-xl font-semibold text-purple-600 bg-white/50 backdrop-blur hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-500 hover:text-white transition-all duration-300 shadow-md">
               Explore Jobs
             </button>
           </div>
@@ -72,7 +74,7 @@ const Contact = () => {
 
       {/* Contact Form Section */}
       <div className="mb-20 bg-white/20 backdrop-blur-lg bg-clip-padding rounded-3xl shadow-2xl border border-white/40 p-6 md:p-12 ring-1 ring-inset ring-white/20 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-center text-indigo-700 mb-6">Send us a Message</h2>
+        <h2 className="text-2xl font-bold text-center text-purple-500 mb-6">Send us a Message</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"

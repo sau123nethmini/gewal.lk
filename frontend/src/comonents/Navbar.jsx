@@ -64,7 +64,7 @@ const Navbar = () => {
         <NavLink to="/contact"
           className={({ isActive }) =>
             `py-1.5 px-3 flex flex-col items-center rounded-lg transition font-semibold text-base
-      ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
+      ${isActive ? 'text-purple-500 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
           }
         >
           <li className="py-1">Contact</li>

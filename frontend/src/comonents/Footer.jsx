@@ -71,7 +71,7 @@ const Footer = () => {
       <div>
         <hr className="border-white/40 mb-6" />
         <p className="text-sm text-center text-white/80 font-light tracking-wide">
-          © 2024 GreatStack. All Rights Reserved.
+          © 2025 . All Rights Reserved.
         </p>
       </div>
     </div>
