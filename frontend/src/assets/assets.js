@@ -21,6 +21,9 @@ import dropdown from './dropdown.png';
 import header from './header.png';
 import home from './home.png';
 import vila from './vila.png';
+import land from './land.png';
+import studio from './studio.png';
+import office from './office.png';
 import appartment from './appartment.png';
 import prop1 from './prop1.jpg';
 import prop2 from './prop2.jpg';
@@ -74,6 +77,18 @@ export const typeData = [
     {
         type: 'Apartment',
         image: appartment
+    },
+    {
+        type: 'Land',
+        image: land
+    },
+    {
+        type: 'Studio',
+        image: studio
+    },
+    {
+        type: 'Office Area',
+        image: office
     },
 ]
 

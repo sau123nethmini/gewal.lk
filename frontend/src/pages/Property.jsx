@@ -45,7 +45,20 @@ const Property = () => {
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${type === "Apartment" ? "bg-purple-400 text-white" : ""}`}>
             Apartment
           </p>
-          
+          <p onClick={()=> type === 'Land' ? navigate('/property') : navigate('/property/Land')}
+            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${type === "Land" ? "bg-purple-400 text-white" : ""}`}>
+            Land
+          </p>
+          <p onClick={()=> type === 'Studio' ? navigate('/property') : navigate('/property/Studio')}
+            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${type === "Studio" ? "bg-purple-400 text-white" : ""}`}>
+            Studio
+          </p>
+          <p onClick={()=> type === 'Office Area' ? navigate('/property') : navigate('/property/Office Area')}
+            className={`w-[95vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${type === "Office Area" ? "bg-purple-400 text-white" : ""}`}>
+            Office Area
+          </p>
+        
+
         </div>
 
         <div className='w-full grid grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4  gap-y-6 px-3 sm:px-0'>
