@@ -19,6 +19,7 @@ import razorpay_logo from './razorpay_logo.png';
 import verify from './verify.png';
 import dropdown from './dropdown.png';
 import header from './header.png';
+import login_img from './login_img.jpg';
 import home from './home.png';
 import vila from './vila.png';
 import land from './land.png';
@@ -63,6 +64,7 @@ export const assets = {
     verify,
     dropdown,
     header,
+    login_img,
 }
 
 export const typeData = [

@@ -4,33 +4,37 @@ import { assets } from '../assets/assets'
 const Header = () => {
     return (
         <div
-            className='flex flex-col md:flex-row flex-wrap bg-purple-400 rounded-lg px-6 md:px-10 lg:px-20 mt-5'
+            className="flex flex-col md:flex-row flex-wrap bg-gradient-to-tr from-purple-200/80 via-white/80 to-purple-100/70 rounded-lg px-4 md:px-10 lg:px-20 mt-5 relative overflow-hidden"
             style={{
                 backgroundImage: `url(${assets.header_img})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5)',
-                backgroundBlendMode: 'overlay, multiply'
-            }}>
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                minHeight: "300px",
+            }}
+        >
+            {/* Soft white overlay for extra lightness */}
+            <div className="absolute inset-0 bg-white/60 pointer-events-none rounded-lg" />
 
-            {/* Header left side*/}
-            <div className='md:w-1/2 flex flex-col items-start justify-center gap-4 py-5 md:py-[10vw] md:mb-[-30px] text-left'>
-                <p className='text-3xl md:text-4xl lg:text-5xl text-purple-500 font-semibold leading-tight'>
+            {/* Header left side */}
+            <div className="relative z-10 md:w-1/2 flex flex-col items-start justify-center gap-4 py-8 md:py-[8vw] text-left">
+                <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-600 leading-tight drop-shadow-sm">
                     Your Dream Home
                     <br />
                     Is Just a Click Away
                 </p>
-                <div className='flex flex-col md:flex-row items-start gap-5 mt-4 text-purple-500 text-sm font-light'>
-                    <img className='w-28' src={assets.group_profiles} alt="" />
+                <div className="flex flex-col md:flex-row items-start gap-5 mt-3 text-purple-500 text-base font-normal">
+                    <img className="w-28" src={assets.group_profiles} alt="Group profiles" />
                     <p>
                         Explore Listings, Book
-                        <br className='hidden sm:block' />
+                        <br className="hidden sm:block" />
                         Visits, Move with Confidence
                     </p>
                 </div>
-                <a href="/property" className='flex items-center gap-3 bg-purple-400 px-8 py-3 rounded-full text-white text-sm md:mr-auto hover:scale-105 transition-all duration-300'>
+                <a
+                    href="/property"
+                    className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-12 py-3 rounded-full mt-10 text-base font-semibold shadow transition-all duration-200"
+                >
                     See properties
-                    <img className="w-5" src={assets.arrow_icon} alt="" />
                 </a>
             </div>
         </div>

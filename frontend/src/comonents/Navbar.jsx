@@ -1,110 +1,184 @@
 import React from 'react'
-import {assets} from '../assets/assets'
+import { assets } from '../assets/assets'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-
 const Navbar = () => {
+  const navigate = useNavigate()
 
-    const navigate = useNavigate();
+  const [showMenu, setShowMenu] = React.useState(false)
+  const [token, setToken] = React.useState(true)
 
-    const[showMenu, setShowMenu] = React.useState(false)
-    const[token, setToken] = React.useState(true)
+  // Hide mobile menu on resize to desktop
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setShowMenu(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Helper for nav link active style
+  const navLinkClass = ({ isActive }) =>
+    `py-2 px-5 flex flex-col items-center rounded-xl transition font-semibold text-lg xl:text-xl
+    ${isActive ? 'text-purple-700 font-extrabold bg-purple-100 shadow-md scale-105' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50 hover:scale-105 duration-200'}`
+
+  // Helper for button style (shared with Create Account)
+  const createAccountButtonClass = ({ isActive }) =>
+    `py-1.5 px-5 rounded-full font-semibold text-base md:text-lg transition duration-200
+    ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow scale-105' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
 
   return (
-    <div className='flex items-center justify-between text-sm py-4 md-5 border-b border-b-gray-400'>
-      <img onClick={()=>navigate(`/`)} className='w-44 cursor-pointer' src={assets.gewal} alt="logo" />
-      <ul className='hidden md:flex item-start gap-5 font-medium'>
-        <NavLink to='/' 
-        className={({ isActive }) =>
-            `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
-          }>
-            <li className='py-1'>Home</li>
-            <hr/>
+    <nav className="sticky top-0 z-50 flex items-center justify-between py-4 border-b border-b-gray-200 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 sm:px-8 md:px-16 shadow-md">
+      <img
+        onClick={() => navigate(`/`)}
+        className="w-40 sm:w-48 cursor-pointer transition-transform hover:scale-105 duration-200"
+        src={assets.gewal_white}
+        alt="logo"
+      />
+      {/* Desktop Nav */}
+      <ul className="hidden lg:flex items-center gap-6 font-medium">
+        <NavLink to="/"
+          className={({ isActive }) =>
+            `py-1.5 px-3 flex flex-col items-center rounded-lg transition font-semibold text-base
+      ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
+          }
+        >
+          <li className="py-1">Home</li>
         </NavLink>
-
-        <NavLink to='/property' 
-        className={({ isActive }) =>
-            `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
-          }>
-            <li className='py-1'>All Property</li>
-            <hr/>
+        <NavLink to="/property"
+          className={({ isActive }) =>
+            `py-1.5 px-3 flex flex-col items-center rounded-lg transition font-semibold text-base
+      ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
+          }
+        >
+          <li className="py-1">All Property</li>
         </NavLink>
-
-        <NavLink to='/about'
-        className={({ isActive }) =>
-            `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
-          }>
-            <li className='py-1'>About</li>
-            <hr/>
+        <NavLink to="/about"
+          className={({ isActive }) =>
+            `py-1.5 px-3 flex flex-col items-center rounded-lg transition font-semibold text-base
+      ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
+          }
+        >
+          <li className="py-1">About</li>
         </NavLink>
-
-        <NavLink to='/contact'
-        className={({ isActive }) =>
-            `py-1 flex flex-col items-center ${isActive ? 'text-purple-600 font-bold' : ''}`
-          }>
-            <li className='py-1'>Contact</li>
-            <hr/>
+        <NavLink to="/contact"
+          className={({ isActive }) =>
+            `py-1.5 px-3 flex flex-col items-center rounded-lg transition font-semibold text-base
+      ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow text-gradient-to-r from-purple-600 to-indigo-600' : 'text-white hover:text-purple-100 hover:bg-white/20'}`
+          }
+        >
+          <li className="py-1">Contact</li>
         </NavLink>
       </ul>
 
-      <div className='flex item-center gap-4'>
-        {
-            token
-            ?<div className='flex item-center gap-2 cursor-pointer group relative'>
-                <img src={assets.profile_pic} alt="avatar" className='w-8 rounded-full' onClick={() => setShowMenu(!showMenu)} />
-                <img src={assets.dropdown} alt="menu" className='w-7' onClick={() => setShowMenu(!showMenu)} />
-                <div className='absolute top-0 right-0 pt-14 text-base font-medium text-black-600 z-20 hidden group-hover:block'>
-                    <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                        <p onClick={()=>navigate('MyProfile')} className='hover:text-purple-600 cursor-pointer'>My Profile</p>
-                        <p onClick={()=>navigate('MyAppointment')} className='hover:text-purple-600 cursor-pointer'>My Appointment</p>
-                        <p onClick={()=>setToken(false)} className='hover:text-purple-600 cursor-pointer'>Logout</p>
-                    </div>
-                </div>
-            </div>
-            :<button 
-            onClick={() => navigate('/Login')}
-            className="bg-purple-600 text-white px-8 py-3 rounded-full font-light hidden md:block 
-                       transition-all duration-300 
-                       focus:outline-none focus:ring-2 focus:ring-purple-600 focus:text-purple-600 focus:bg-white 
-                       hover:bg-white hover:text-purple-600 hover:ring-2 hover:ring-purple-600"
-          >Cteate Account</button>
-        }
-
-        <img 
-        onClick={()=>setShowMenu(true)}
-        className='w-10 md:hidden' src={assets.menu} alt="" />
-
-        {/* Mobile Menu */}
-
-        <div className={`${showMenu ? 'fixed w-full': 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
-          <div className='flex items-center justify-between px-5 py-6'>
-            <img className='w-36' src={assets.logo} alt="" />
-            <img className='w-7' onClick={()=>setShowMenu(false)} src={assets.cross_icon} alt="" />
+      <div className="flex items-center gap-3">
+        {token ? (
+          <div className="relative flex items-center group">
+            <img
+              src={assets.profile_pic}
+              alt="avatar"
+              className="w-11 h-11 rounded-full border-2 border-purple-200 cursor-pointer object-cover shadow-sm hover:ring-2 hover:ring-white transition"
+              onClick={() => setShowMenu(!showMenu)}
+            />
+            <img
+              src={assets.dropdown}
+              alt="menu"
+              className="w-8 ml-1 cursor-pointer"
+              onClick={() => setShowMenu(!showMenu)}
+            />
+            {/* Dropdown */}
+            {showMenu && (
+              <div className="absolute right-0 top-14 bg-white border border-gray-100 rounded-2xl shadow-xl w-56 py-4 z-30 animate-fadeIn text-gray-800">
+                <button
+                  className="block w-full px-6 py-3 text-left hover:text-purple-700 hover:bg-purple-50 transition rounded-lg"
+                  onClick={() => {
+                    navigate('/my-profile')
+                    setShowMenu(false)
+                  }}
+                >
+                  <span className="inline-block mr-2">👤</span> My Profile
+                </button>
+                <button
+                  className="block w-full px-6 py-3 text-left hover:text-purple-700 hover:bg-purple-50 transition rounded-lg"
+                  onClick={() => {
+                    navigate('/my-appointment')
+                    setShowMenu(false)
+                  }}
+                >
+                  <span className="inline-block mr-2">📅</span> My Appointment
+                </button>
+                <button
+                  className="block w-full px-6 py-3 text-left hover:text-purple-700 hover:bg-purple-50 transition rounded-lg"
+                  onClick={() => {
+                    setToken(false)
+                    setShowMenu(false)
+                  }}
+                >
+                  <span className="inline-block mr-2">🚪</span> Logout
+                </button>
+              </div>
+            )}
           </div>
-          <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
-            <NavLink 
-            to='/' onClick={()=>setShowMenu(false)} className='px-4 py-2 rounded inline-block'>
-              <p className='px-4 py-2 rounded inline-block'>Home</p>
-            </NavLink>
+        ) : (
+          <NavLink
+            to="/Login"
+            className={createAccountButtonClass}
+          >
+            Create Account
+          </NavLink>
+        )}
 
-            <NavLink to='/property' onClick={()=>setShowMenu(false)}>
-              <p className='px-4 py-2 rounded inline-block'>All Property</p>
-            </NavLink>
+        {/* Mobile menu button (hamburger) */}
+        <img
+          onClick={() => setShowMenu(true)}
+          className="w-10 lg:hidden cursor-pointer"
+          src={assets.menu}
+          alt="menu"
+        />
 
-            <NavLink to='/about' onClick={()=>setShowMenu(false)}>
-              <p className='px-4 py-2 rounded inline-block'>About</p>
+        {/* Mobile Menu Overlay */}
+        <div
+          className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${showMenu ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} lg:hidden`}
+          onClick={() => setShowMenu(false)}
+        />
+        {/* Mobile Menu Panel - hidden on lg and up */}
+        <div
+          className={`fixed right-0 top-0 h-full w-72 bg-white z-50 shadow-2xl transform transition-transform duration-300 ${showMenu ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}
+        >
+          <div className="flex items-center justify-between px-5 py-6 border-b border-gray-100">
+            <img className="w-36" src={assets.gewal} alt="logo" />
+            <img className="w-7 cursor-pointer" onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="close" />
+          </div>
+          <ul className="flex flex-col items-center gap-1 mt-5 px-5 text-lg font-semibold">
+            <NavLink to="/" onClick={() => setShowMenu(false)} className={({ isActive }) => `px-4 py-3 rounded-xl w-full text-center transition ${isActive ? "bg-purple-100 text-purple-700 font-bold" : "hover:bg-purple-50 text-gray-700"}`}>
+              Home
             </NavLink>
-
-            <NavLink to='/contact' onClick={()=>setShowMenu(false)}>
-              <p className='px-4 py-2 rounded inline-block'>Contact</p>
+            <NavLink to="/property" onClick={() => setShowMenu(false)} className={({ isActive }) => `px-4 py-3 rounded-xl w-full text-center transition ${isActive ? "bg-purple-100 text-purple-700 font-bold" : "hover:bg-purple-50 text-gray-700"}`}>
+              All Property
             </NavLink>
+            <NavLink to="/about" onClick={() => setShowMenu(false)} className={({ isActive }) => `px-4 py-3 rounded-xl w-full text-center transition ${isActive ? "bg-purple-100 text-purple-700 font-bold" : "hover:bg-purple-50 text-gray-700"}`}>
+              About
+            </NavLink>
+            <NavLink to="/contact" onClick={() => setShowMenu(false)} className={({ isActive }) => `px-4 py-3 rounded-xl w-full text-center transition ${isActive ? "bg-purple-100 text-purple-700 font-bold" : "hover:bg-purple-50 text-gray-700"}`}>
+              Contact
+            </NavLink>
+            {!token && (
+              <NavLink
+                to="/Login"
+                onClick={() => setShowMenu(false)}
+                className={({ isActive }) =>
+                  `mt-6 block text-center rounded-full font-semibold text-base px-8 py-3 transition duration-200 shadow
+                  ${isActive ? 'text-purple-700 font-bold bg-white bg-opacity-80 shadow scale-105' : 'text-purple-600 bg-purple-50 hover:bg-purple-100 hover:text-purple-800'}`
+                }
+              >
+                Create Account
+              </NavLink>
+            )}
           </ul>
         </div>
-        
       </div>
-    </div>
+    </nav>
   )
-  
 }
 
 export default Navbar
