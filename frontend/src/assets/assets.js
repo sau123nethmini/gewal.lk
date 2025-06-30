@@ -9,7 +9,7 @@ import g_logo from './g_logo.png';
 import gewal_white from './gewal_white.png';
 import gewal from './gewal.png';
 import group_profiles from './group_profiles.png';
-import header_img from './header_img.png';
+import header_img from './header_img.jpg';
 import info_icon from './info_icon.png';
 import menu from './menu.png';
 import profile_pic from './profile_pic.png';
@@ -18,6 +18,7 @@ import stripe_logo from './stripe_logo.png';
 import razorpay_logo from './razorpay_logo.png';
 import verify from './verify.png';
 import dropdown from './dropdown.png';
+import header from './header.png';
 import home from './home.png';
 import vila from './vila.png';
 import appartment from './appartment.png';
@@ -57,7 +58,8 @@ export const assets = {
     stripe_logo,
     razorpay_logo,
     verify,
-    dropdown
+    dropdown,
+    header,
 }
 
 export const typeData = [
