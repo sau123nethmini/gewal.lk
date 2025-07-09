@@ -175,7 +175,7 @@ const ChatBot = () => {
 
   return (
     <div className={`fixed bottom-5 right-5 ${isChatOpen ? 'w-96 h-96' : 'w-14 h-14'} transition-all`}>
-      <div className="bg-blue-500 text-white p-4 rounded-full cursor-pointer shadow-lg hover:bg-green-600 transition" onClick={toggleChat}>
+      <div className="bg-purple-500 text-white p-4 rounded-full cursor-pointer shadow-lg hover:bg-purple-200 transition" onClick={toggleChat}>
         <FaHeadphones size={24} />
       </div>
 

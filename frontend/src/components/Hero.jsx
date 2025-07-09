@@ -63,7 +63,7 @@ const Hero = () => {
   const animatedText = useTypedText([
     "Your Dream Property Awaits",
     "Discover Iconic Homes in Prime Locations",
-    "Live the Life You Deserve — Starting at Home",
+    "Live the Life You Deserve, Starting at Home",
     "Experience Luxury Living in Sri Lanka",
     "Where Your Property Dreams Come True",
     "Elevate Your Lifestyle with Our Exclusive Estates",

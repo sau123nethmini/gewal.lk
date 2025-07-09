@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Footer = () => {
   return (
-    <footer className="py-10">
+    <footer className="py-10 bg-purple-50">
       {/* Footer Container */}
       <div className="container mx-auto flex flex-col sm:flex-row sm:justify-between items-center sm:items-start gap-10 px-5">
         {/* Logo Section */}

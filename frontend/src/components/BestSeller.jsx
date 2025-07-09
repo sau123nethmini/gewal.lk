@@ -70,96 +70,91 @@ const BestSeller = () => {
   ]);
 
   return (
-    <section className="py-20 bg-white font-poppins">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-white font-poppins">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="text-center md:text-left mb-6 md:mb-0">
-            <h2 className="text-3xl font-bold text-[#22223B] mb-4">
-              New <span className="text-[#8E7BEF]">Arrivals</span>
+            <h2 className="text-4xl font-extrabold text-black mb-3 tracking-tight drop-shadow-sm">
+              Discover <span className="text-purple-500">New Arrivals</span>
             </h2>
-            <p className="text-[#4A4E69] max-w-2xl">
-              Explore our latest additions to the property market. These premium listings are handpicked for their exceptional quality and value.
+            <p className="text-[#4A4E69] max-w-2xl text-lg opacity-90">
+              Handpicked premium properties, just listed for you. Find your perfect home from our latest selection.
             </p>
           </div>
           <Link
             to="/properties"
-            className="flex items-center gap-2 bg-[#8E7BEF] hover:bg-[#A084E8] text-white px-6 py-3 rounded-xl font-semibold shadow transition-all duration-300 hover:scale-105"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] hover:from-[#A084E8] hover:to-[#8E7BEF] text-white px-7 py-3 rounded-full font-bold shadow-xl transition-transform duration-300 hover:scale-105"
           >
             View All Properties
-            <FaArrowRight className="text-sm" />
+            <FaArrowRight className="text-base" />
           </Link>
         </div>
 
-        {/* Properties Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Properties Grid - Dialog with Image style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {newArrivals.map((item, index) => (
             <div
               key={item._id}
-              className="group bg-[#F6F7FB] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in"
-              style={{ animationDelay: `${0.1 * index}s`, animationFillMode: "both" }}
+              className="relative flex items-stretch bg-white/95 backdrop-blur-xl rounded-3xl shadow-xl overflow-hidden p-0 animate-fade-in hover:shadow-2xl transition-all duration-300"
+              style={{ animationDelay: `${0.1 * index + 0.05}s`, animationFillMode: "both" }}
             >
-              <div className="flex flex-col md:flex-row">
-                {/* Image Section */}
-                <div className="md:w-1/2 relative">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <span className="absolute top-4 left-4 bg-[#8E7BEF] text-white px-3 py-1 rounded-full text-xs font-semibold shadow">
-                    New
-                  </span>
-                  <span className="absolute bottom-4 right-4 bg-white/80 text-[#8E7BEF] px-3 py-1 rounded-full text-xs font-semibold border border-[#EAE6FB] shadow">
+              {/* Image as dialog-side */}
+              <div className="flex-shrink-0 w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden border-4 border-[#EAE6FB] shadow-lg bg-white ml-4 mr-4 md:ml-8 md:mr-8 my-6 relative">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
+                />
+                <span className="absolute top-2 left-2 bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl tracking-wide animate-pop-in z-10">
+                  New
+                </span>
+              </div>
+              {/* Dialog bubble/content */}
+              <div className="flex-1 flex flex-col justify-between p-6 pr-8">
+                <div>
+                  <div className="flex items-center gap-1 text-[#F4C518] mb-1">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <FaStar key={i} className="drop-shadow" />
+                    ))}
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#322653] mb-2">{item.name}</h3>
+                  <div className="flex items-center text-[#8E7BEF] text-base mb-4 font-semibold">
+                    <FaMapMarkerAlt className="mr-2" />
+                    <span>{item.location}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-2 mb-5">
+                    <div className="flex items-center gap-2 text-base text-[#444]">
+                      <FaBed className="text-[#8E7BEF]" />
+                      <span>{item.bedrooms} <span className="font-medium text-[#7e6fc9]">Beds</span></span>
+                    </div>
+                    <div className="flex items-center gap-2 text-base text-[#444]">
+                      <FaBath className="text-[#8E7BEF]" />
+                      <span>{item.bathrooms} <span className="font-medium text-[#7e6fc9]">Baths</span></span>
+                    </div>
+                    <div className="flex items-center gap-2 text-base text-[#444]">
+                      <FaRulerCombined className="text-[#8E7BEF]" />
+                      <span>{item.area} <span className="font-medium text-[#7e6fc9]">sqft</span></span>
+                    </div>
+                    <div className="flex items-center gap-2 text-base text-[#444]">
+                      <FaCar className="text-[#8E7BEF]" />
+                      <span>{item.parking} <span className="font-medium text-[#7e6fc9]">Parking</span></span>
+                    </div>
+                  </div>
+                  <span className="inline-block bg-[#f6f0fe] text-[#8E7BEF] px-4 py-1 rounded-full text-xs font-bold border border-[#EAE6FB] shadow animate-pop-in mb-4">
                     {item.type}
                   </span>
                 </div>
-
-                {/* Details Section */}
-                <div className="md:w-1/2 p-6 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-1 text-[#F4C518] mb-2">
-                      {[...Array(item.rating)].map((_, i) => (
-                        <FaStar key={i} />
-                      ))}
-                    </div>
-                    <h3 className="text-lg font-semibold text-[#22223B] mb-1">{item.name}</h3>
-                    <div className="flex items-center text-[#8E7BEF] text-sm mb-3">
-                      <FaMapMarkerAlt className="mr-1" />
-                      <span>{item.location}</span>
-                    </div>
-                    {/* Property Features */}
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-4 text-[#4A4E69]">
-                      <div className="flex items-center gap-2 text-xs">
-                        <FaBed className="text-[#8E7BEF]" />
-                        <span>{item.bedrooms} Beds</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <FaBath className="text-[#8E7BEF]" />
-                        <span>{item.bathrooms} Baths</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <FaRulerCombined className="text-[#8E7BEF]" />
-                        <span>{item.area} sqft</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <FaCar className="text-[#8E7BEF]" />
-                        <span>{item.parking} Parking</span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Price & CTA */}
-                  <div className="flex justify-between items-center mt-auto">
-                    <span className="text-xl font-bold text-[#8E7BEF]">
-                      LKR {item.price.toLocaleString()}
-                    </span>
-                    <Link
-                      to={`/product/${item._id}`}
-                      className="text-[#8E7BEF] hover:text-[#A084E8] font-medium text-sm underline underline-offset-4"
-                    >
-                      View Details
-                    </Link>
-                  </div>
+                <div className="flex justify-between items-end mt-3">
+                  <span className="text-2xl font-extrabold text-[#8E7BEF] tracking-tight drop-shadow">
+                    LKR {item.price.toLocaleString()}
+                  </span>
+                  <Link
+                    to={`/product/${item._id}`}
+                    className="text-[#8E7BEF] hover:text-[#A084E8] font-bold text-base underline underline-offset-4 transition-colors duration-200"
+                  >
+                    View Details
+                  </Link>
                 </div>
               </div>
             </div>
@@ -167,20 +162,29 @@ const BestSeller = () => {
         </div>
 
         {/* View More Button for Mobile */}
-        <div className="mt-12 text-center md:hidden">
+        <div className="mt-14 text-center md:hidden">
           <Link
             to="/properties"
-            className="bg-[#8E7BEF] hover:bg-[#A084E8] text-white px-8 py-3 rounded-xl font-semibold shadow transition-all duration-300 inline-block"
+            className="bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] hover:from-[#A084E8] hover:to-[#8E7BEF] text-white px-10 py-4 rounded-full font-bold shadow-xl transition-transform duration-300 inline-block"
           >
             View More Properties
           </Link>
         </div>
       </div>
 
-      {/* Fade-in Animation */}
+      {/* Animations and Style */}
       <style>{`
-        @keyframes fade-in { from { opacity: 0; transform: translateY(24px);} to { opacity: 1; transform: none; } }
-        .animate-fade-in { animation: fade-in 1.1s cubic-bezier(.4,0,.2,1) both;}
+        @keyframes fade-in { 
+          from { opacity: 0; transform: translateY(30px) scale(0.94);}
+          to { opacity: 1; transform: none; }
+        }
+        .animate-fade-in { animation: fade-in 1s cubic-bezier(.4,0,.2,1) both;}
+        @keyframes pop-in {
+          0% { opacity: 0; transform: scale(0.75);}
+          80% { opacity: 1; transform: scale(1.09);}
+          100% { opacity: 1; transform: scale(1);}
+        }
+        .animate-pop-in { animation: pop-in 0.7s cubic-bezier(.4,0,.2,1) both;}
         .font-poppins { font-family: 'Poppins', 'Inter', sans-serif;}
       `}</style>
     </section>
