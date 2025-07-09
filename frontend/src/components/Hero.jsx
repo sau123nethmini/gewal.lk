@@ -1,27 +1,90 @@
 import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
-import { Link } from 'react-router-dom';
-import { FaSearch, FaMapMarkerAlt, FaArrowRight, FaRegStar, FaRegSmileBeam } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { FaSearch, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+
+// Minimal typewriter effect for elegance
+const useTypedText = (texts, speed = 70, delay = 1500) => {
+  const [displayed, setDisplayed] = useState("");
+  const [textIdx, setTextIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let typing;
+    if (!isDeleting && charIdx <= texts[textIdx].length) {
+      typing = setTimeout(() => {
+        setDisplayed(texts[textIdx].slice(0, charIdx));
+        setCharIdx((idx) => idx + 1);
+      }, speed);
+    } else if (!isDeleting && charIdx > texts[textIdx].length) {
+      typing = setTimeout(() => setIsDeleting(true), delay);
+    } else if (isDeleting && charIdx >= 0) {
+      typing = setTimeout(() => {
+        setDisplayed(texts[textIdx].slice(0, charIdx));
+        setCharIdx((idx) => idx - 1);
+      }, speed / 2);
+    } else if (isDeleting && charIdx < 0) {
+      setIsDeleting(false);
+      setTextIdx((idx) => (idx + 1) % texts.length);
+      setCharIdx(0);
+    }
+    return () => clearTimeout(typing);
+  }, [charIdx, isDeleting, textIdx, texts, speed, delay]);
+  return displayed;
+};
+
+// Animated Counter Hook
+function useCountUp(to, duration = 1100) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const step = Math.ceil(to / (duration / 16));
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= to) {
+        setCount(to);
+        clearInterval(interval);
+      } else {
+        setCount(start);
+      }
+    }, 16);
+    return () => clearInterval(interval);
+  }, [to, duration]);
+  return count;
+}
 
 const media = [assets.hero11, assets.hero22, assets.herov];
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Simple animated headline
+  const animatedText = useTypedText([
+    "Your Dream Property Awaits",
+    "Discover Iconic Homes in Prime Locations",
+    "Live the Life You Deserve — Starting at Home",
+    "Experience Luxury Living in Sri Lanka",
+    "Where Your Property Dreams Come True",
+    "Elevate Your Lifestyle with Our Exclusive Estates",
+  ]);
+
+  // Animated stats
+  const Properties = useCountUp(500);
+  const Locations = useCountUp(100);
+  const Clients = useCountUp(10000);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
-    }, 8000);
+    }, 7000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // Slider dot navigation
-  const goToSlide = (idx) => setCurrentIndex(idx);
-
   return (
-    <section className="relative h-[92vh] min-h-[650px] w-full overflow-hidden font-poppins">
-      {/* Background Media */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative h-[90vh] min-h-[540px] w-full overflow-hidden font-poppins flex items-center bg-white">
+      {/* Background Media (only one at a time, soft fade) */}
+      <div className="absolute inset-0 w-full h-full z-0">
         {media.map((item, index) =>
           item.endsWith(".mp4") ? (
             <video
@@ -31,146 +94,98 @@ const Hero = () => {
               loop
               muted
               playsInline
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
             />
           ) : (
             <img
               key={index}
               src={item}
-              alt={`Property ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
             />
           )
         )}
-        {/* Stronger gradient overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#392e66]/80 via-[#8E7BEF]/40 to-[#d1c28f]/30 pointer-events-none" />
+        {/* Soft white overlay for clarity */}
+        <div className="absolute inset-0 bg-white/70" />
       </div>
 
-      {/* Slider Dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
-        {media.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 border-2 border-[#fff6d6] bg-white/60
-            ${idx === currentIndex ? "scale-125 bg-gradient-to-r from-[#d1c28f] to-[#8E7BEF] shadow-md" : "opacity-70"}
-            `}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-4 flex flex-col items-center text-center">
+        
+        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-purple-600 mb-6">
+          {animatedText}
+        </h1>
+        <p className="text-base sm:text-lg text-[#43387f] mb-8 max-w-xl mx-auto font-bold">
+          Step into the world of sophistication with{" "}
+          <span className="font-bold text-purple-600 ">gewal.lk</span>.
+          Discover breathtaking estates and modern homes in Sri Lanka’s most coveted locations.
+        </p>
 
-      {/* Centered Content */}
-      <div className="relative h-full flex items-center justify-center z-10">
-        <div className="w-full max-w-3xl mx-auto px-6 py-12 bg-white/20 backdrop-blur-2xl rounded-3xl shadow-2xl border border-[#eae6fb]/20 flex flex-col items-center text-center space-y-8 animate-fade-in-up">
-          {/* Badge */}
-          <span className="inline-block bg-gradient-to-r from-[#8E7BEF] via-[#bfa9f8] to-[#A084E8] text-transparent bg-clip-text px-8 py-2 rounded-full text-base font-semibold shadow-md border border-[#eae6fb]/30 tracking-widest uppercase mb-2">
-            Exclusive Collection
-          </span>
-          {/* Title */}
-          <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight drop-shadow-xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d1c28f] via-[#fff6d6] to-[#8E7BEF] drop-shadow-[0_3px_24px_rgba(209,194,143,0.18)]">
-              Luxury Living
-            </span>{" "}
-            Awaits You
-          </h1>
-          {/* Subtitle */}
-          <p className="text-lg sm:text-2xl text-[#f3eefc] mb-2 max-w-xl leading-relaxed font-light mx-auto">
-            Step into the world of sophistication with <span className="font-semibold text-[#F3E9C9]">gewal.lk</span>. Explore breathtaking estates and modern homes in Sri Lanka’s most coveted locations.
-          </p>
-          {/* Decorative Divider */}
-          <div className="flex justify-center items-center space-x-1 mb-2">
-            <FaRegStar className="text-[#d1c28f] text-lg animate-pulse" />
-            <div className="w-12 h-1 bg-gradient-to-r from-[#d1c28f] via-[#bfa9f8] to-[#8E7BEF] rounded-full" />
-            <FaRegStar className="text-[#d1c28f] text-lg animate-pulse" />
+        {/* Search Section */}
+        <div className="w-full max-w-xl bg-white/90 border border-purple-600 rounded-2xl shadow-md p-4 sm:p-5 flex flex-col sm:flex-row gap-3 mb-7">
+          <div className="relative flex-1">
+            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A084E8] opacity-80 text-lg" />
+            <input
+              type="text"
+              placeholder="Search by location…"
+              className="w-full bg-transparent border-none rounded-xl pl-10 pr-3 py-2.5 text-[#392e66] placeholder-[#bfa9f8] focus:outline-none focus:ring-2 focus:ring-[#8E7BEF]/40 font-medium transition"
+            />
           </div>
-          {/* Search Bar */}
-          <div className="w-full">
-            <div className="bg-white/40 backdrop-blur-xl border border-[#eae6fb]/40 rounded-2xl shadow-2xl p-4 w-full">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#bfa9f8]" />
-                  <input
-                    type="text"
-                    placeholder="Search by location…"
-                    className="w-full bg-transparent border-none rounded-xl pl-12 pr-4 py-3 text-white placeholder-[#bfa9f8] focus:outline-none focus:ring-2 focus:ring-[#d1c28f]/80 font-medium shadow-inner transition-shadow"
-                  />
-                </div>
-                <div className="flex-1 relative">
-                  <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-[#bfa9f8]" />
-                  <select className="w-full bg-transparent border-none rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#d1c28f]/80 font-medium shadow-inner transition-shadow">
-                    <option value="">Property Type</option>
-                    <option value="house">House</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="villa">Villa</option>
-                  </select>
-                </div>
-                <button className="bg-gradient-to-r from-[#d1c28f] to-[#8E7BEF] hover:from-[#8E7BEF] hover:to-[#d1c28f] text-[#392e66] font-bold px-8 py-3 rounded-xl shadow-lg text-lg uppercase tracking-wider transition-all duration-300 hover:scale-110 border border-[#d1c28f]/30 focus:ring-4 focus:ring-[#d1c28f]/50">
-                  Search
-                </button>
-              </div>
-            </div>
+          <div className="relative flex-1">
+            <FaMapMarkerAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A084E8] opacity-80 text-lg" />
+            <select className="w-full bg-transparent border-none rounded-xl pl-10 pr-3 py-2.5 text-[#392e66] focus:outline-none focus:ring-2 focus:ring-[#8E7BEF]/40 font-medium transition">
+              <option value="" className="text-black">Property Type</option>
+              <option value="house" className="text-black">House</option>
+              <option value="apartment" className="text-black">Apartment</option>
+              <option value="villa" className="text-black">Villa</option>
+            </select>
           </div>
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-7 w-full mt-1 mb-2">
-            {[
-              { num: "500+", label: "Properties" },
-              { num: "100+", label: "Locations" },
-              { num: "10K+", label: "Happy Clients" },
-              { num: <span className="flex items-center gap-1">24/7 <FaRegSmileBeam className="ml-1 text-[#d1c28f]" /></span>, label: "Support" },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center bg-white/10 rounded-xl p-3 backdrop-blur-md shadow-inner ring-1 ring-white/10">
-                <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#d1c28f] to-[#8E7BEF] drop-shadow-glow animate-fade-in-up">{stat.num}</div>
-                <div className="text-sm text-[#f3eefc] tracking-wider font-medium">{stat.label}</div>
-              </div>
-            ))}
+          <button className="w-full sm:w-auto block bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] hover:from-[#A084E8] hover:to-[#8E7BEF] text-white font-bold px-7 py-2.5 rounded-xl shadow transition-all duration-150 text-base flex items-center justify-center gap-2">
+            Search <FaArrowRight />
+          </button>
+        </div>
+
+        {/* Stats - Animated Counters */}
+        <div className="w-full max-w-lg mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 mb-7">
+          <div className="flex flex-col items-center">
+            <div className="text-2xl sm:text-3xl font-extrabold text-purple-600">{Properties}+</div>
+            <div className="text-xs sm:text-sm text-[#43387f] font-medium">Properties</div>
           </div>
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mt-4">
-            <Link
-              to="/properties"
-              className="bg-gradient-to-r from-[#d1c28f] to-[#8E7BEF] hover:from-[#8E7BEF] hover:to-[#d1c28f] text-[#392e66] px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center gap-2 border border-[#eae6fb]/40 focus:ring-4 focus:ring-[#d1c28f]/30"
-            >
-              Explore Properties
-              <FaArrowRight className="text-base" />
-            </Link>
-            <Link
-              to="/contact"
-              className="bg-white/30 hover:bg-white/50 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow transition-all duration-300 transform hover:scale-110 flex items-center gap-2 border border-[#eae6fb]/30 focus:ring-4 focus:ring-[#fff6d6]/30"
-            >
-              Contact Us
-              <FaArrowRight className="text-base" />
-            </Link>
+          <div className="flex flex-col items-center">
+            <div className="text-2xl sm:text-3xl font-extrabold text-purple-600">{Locations}+</div>
+            <div className="text-xs sm:text-sm text-[#43387f] font-medium">Locations</div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-2xl sm:text-3xl font-extrabold text-purple-600">{Clients.toLocaleString()}+</div>
+            <div className="text-xs sm:text-sm text-[#43387f] font-medium">Happy Clients</div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-2xl sm:text-3xl font-extrabold text-purple-600">24/7</div>
+            <div className="text-xs sm:text-sm text-[#43387f] font-medium">Support</div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="animate-bounce">
-          <svg
-            className="w-8 h-8 text-[#d1c28f] opacity-70"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            to="/properties"
+            className="block bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] hover:from-[#A084E8] hover:to-[#8E7BEF] text-white px-7 py-3 rounded-xl text-base font-semibold shadow-sm transition-all duration-150 flex items-center justify-center gap-2"
+            
           >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+            Explore Properties <FaArrowRight />
+          </Link>
+          <Link
+            to="/contact"
+            className="bg-white border border-[#edeafd] text-purple-600 px-7 py-3 rounded-xl text-base font-semibold shadow-sm transition-all duration-150 flex items-center justify-center gap-2"
+          >
+            Contact Us <FaArrowRight />
+          </Link>
         </div>
       </div>
-      {/* Optional: floating shapes for extra flair */}
-      {/* <div className="absolute top-10 left-10 w-24 h-24 bg-[#d1c28f]/10 rounded-full blur-2xl animate-pulse" /> */}
     </section>
   );
 };
 
 export default Hero;
-
-/* Add this to your CSS for the fade-in-up animation and drop-shadow-glow if not already defined: */
