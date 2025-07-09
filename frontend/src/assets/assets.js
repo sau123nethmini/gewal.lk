@@ -19,11 +19,9 @@ import contact_img from './contact_img.png'
 import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
-import cartpage from './cartpage.png'
 
-import real from './real.png'
 import hero11 from './hero11.jpg'
-import hero22 from './hero22.png'
+import hero22 from './hero22.jpg'
 import herov from './herov.mp4'
 import view from './view.png'
 import tic from './tic.png'
@@ -47,7 +45,6 @@ export const assets = {
     razorpay_logo,
     stripe_logo,
     cross_icon,
-    real,
     hero11,
     hero22,
     herov,
