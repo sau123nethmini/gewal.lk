@@ -28,6 +28,7 @@ import herov from './herov.mp4'
 import view from './view.png'
 import tic from './tic.png'
 import gewal from './gewal.png'
+import g_logo from './g_logo.png'
 
 export const assets = {
     cart_icon,
@@ -57,5 +58,6 @@ export const assets = {
     p_img2_1,
     p_img3,
     p_img4,
+    g_logo,
 
 }
