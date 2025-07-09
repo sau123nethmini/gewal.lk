@@ -1,72 +1,95 @@
-import React from 'react'
-import { assets } from '../assets/assets'
+import React from 'react';
+import { assets } from '../assets/assets'; // Ensure assets.about_img exists, or replace with your image path
+import { FaHome, FaUsers, FaHandshake, FaShieldAlt } from 'react-icons/fa';
 
 const About = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4">
-      {/* About Us Heading */}
-      <div className="text-center text-4xl font-extrabold pt-12 tracking-tight">
-        <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-md">
-          About US
-        </span>
-      </div>
-
-      {/* About Us Content */}
-      <div className="my-14 flex flex-col md:flex-row gap-12 items-center 
-        bg-white/20 backdrop-blur-lg bg-clip-padding rounded-3xl shadow-2xl border border-white/40 p-6 md:p-12
-        ring-1 ring-inset ring-white/20
-        ">
-        <img
-          className="w-full md:max-w-[360px] rounded-2xl object-cover shadow-xl border-4 border-white/40"
-          src={assets.about_img}
-          alt="About Prescripto"
-        />
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-lg text-gray-900/90">
-          <p>
-            Welcome to <span className="font-semibold text-purple-400">Gewal.lk </span>, Your Trusted Partner in Property Management and Real Estate Solutions.
-            At Gewal.lk, we understand the complexities of finding, managing, and investing in real estate. Whether you’re a tenant searching for a perfect home, a landlord looking to streamline property rentals, or an investor seeking valuable insights — we’re here to simplify your journey
-          </p>     
-          <div>
-            <h3 className="text-xl font-bold text-purple-500 mb-1">Our Vision</h3>
-            <p>
-              Our vision at Gewal.lk is to revolutionize the real estate landscape by connecting people to property with ease, accuracy, and confidence. We strive to be the most reliable digital bridge between tenants, buyers, property owners, and real estate professionals — helping you unlock the true value of property management.
+    <div className="bg-[#F6F7FB] py-12 px-6 font-poppins">
+      <div className="max-w-6xl mx-auto">
+        {/* Hero Section */}
+        <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-12">
+          <div className="w-full md:w-1/2">
+            <img
+              src={assets.about_img}
+              alt="Modern Real Estate"
+              className="w-full h-auto rounded-3xl shadow-xl object-cover transition duration-400 hover:scale-105"
+            />
+          </div>
+          <div className="w-full md:w-1/2 md:pl-10 text-center md:text-left">
+            <h2 className="text-4xl font-bold text-[#22223B] mb-4">About <span className="text-[#8E7BEF]">gewal.lk</span></h2>
+            <p className="text-lg text-[#4A4E69] mb-6">
+              gewal.lk is Sri Lanka’s modern, trusted platform for property management and real estate services. Whether you’re looking to buy, sell, rent, or manage properties, our mission is to simplify your experience with technology, expertise, and care.
             </p>
+            <a
+              href="/services"
+              className="inline-block bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] hover:from-[#A084E8] hover:to-[#8E7BEF] text-white px-7 py-3 rounded-xl font-semibold shadow-lg transition-all duration-200 mt-2"
+            >
+              Our Services
+            </a>
           </div>
         </div>
-      </div>
 
-      {/* Why Choose Us */}
-      <div className="text-center text-2xl font-extrabold mb-8 tracking-tight">
-        <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow">
-          WHY CHOOSE US
-        </span>
-      </div>
+        {/* Our Story */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-[#22223B] mb-6">Our Story</h2>
+          <p className="text-lg text-[#4A4E69] leading-relaxed text-center max-w-3xl mx-auto">
+            Founded by property professionals who understand local needs, gewal.lk was built to bridge the gap between traditional real estate and the future of digital property management. We combine deep market knowledge with intuitive tools, making it easy for individuals, families, and businesses to manage, invest, and thrive in the Sri Lankan property market.
+          </p>
+        </div>
 
-      <div className="flex flex-col md:flex-row gap-8 mb-20 items-stretch">
-        {/* Card 1 */}
-        <div className="flex-1 bg-white/20 border border-white/30 rounded-2xl px-8 py-12 flex flex-col gap-4 items-center shadow-xl backdrop-blur-lg
-        hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500/80 hover:to-indigo-500/80 hover:text-white transition-all duration-300 cursor-pointer group">
-          <span className="text-3xl mb-2 font-semibold transition group-hover:scale-110 duration-200">⚡</span>
-          <h4 className="text-lg font-semibold group-hover:text-white text-purple-500">Efficiency</h4>
-          <p className="text-center text-base group-hover:text-white/90">Streamlined appointment scheduling that fits into your busy lifestyle.</p>
+        {/* Our Values */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-[#22223B] mb-10">Our Values</h2>
+          <div className="flex flex-wrap justify-center gap-10">
+            <div className="bg-white rounded-2xl shadow p-8 w-72 flex flex-col items-center hover:shadow-lg transition">
+              <FaHome className="text-[#8E7BEF] text-4xl mb-4" />
+              <h3 className="text-xl font-semibold text-[#22223B] mb-2">Integrity</h3>
+              <p className="text-[#4A4E69] text-center">We operate with honesty and transparency, building trust with every client and partner.</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow p-8 w-72 flex flex-col items-center hover:shadow-lg transition">
+              <FaUsers className="text-[#8E7BEF] text-4xl mb-4" />
+              <h3 className="text-xl font-semibold text-[#22223B] mb-2">Community</h3>
+              <p className="text-[#4A4E69] text-center">We value long-term relationships and support the growth of vibrant local communities.</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow p-8 w-72 flex flex-col items-center hover:shadow-lg transition">
+              <FaHandshake className="text-[#8E7BEF] text-4xl mb-4" />
+              <h3 className="text-xl font-semibold text-[#22223B] mb-2">Service</h3>
+              <p className="text-[#4A4E69] text-center">We are committed to delivering the highest quality service, making property management seamless and stress-free.</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow p-8 w-72 flex flex-col items-center hover:shadow-lg transition">
+              <FaShieldAlt className="text-[#8E7BEF] text-4xl mb-4" />
+              <h3 className="text-xl font-semibold text-[#22223B] mb-2">Security</h3>
+              <p className="text-[#4A4E69] text-center">Your data, assets, and privacy are protected by robust technology and best practices.</p>
+            </div>
+          </div>
         </div>
-        {/* Card 2 */}
-        <div className="flex-1 bg-white/20 border border-white/30 rounded-2xl px-8 py-12 flex flex-col gap-4 items-center shadow-xl backdrop-blur-lg
-        hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500/80 hover:to-indigo-500/80 hover:text-white transition-all duration-300 cursor-pointer group">
-          <span className="text-3xl mb-2 font-semibold transition group-hover:scale-110 duration-200">🤝</span>
-          <h4 className="text-lg font-semibold group-hover:text-white text-purple-500">Convenience</h4>
-          <p className="text-center text-base group-hover:text-white/90">Access to a network of trusted healthcare professionals in your area.</p>
-        </div>
-        {/* Card 3 */}
-        <div className="flex-1 bg-white/20 border border-white/30 rounded-2xl px-8 py-12 flex flex-col gap-4 items-center shadow-xl backdrop-blur-lg
-        hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500/80 hover:to-indigo-500/80 hover:text-white transition-all duration-300 cursor-pointer group">
-          <span className="text-3xl mb-2 font-semibold transition group-hover:scale-110 duration-200">🎯</span>
-          <h4 className="text-lg font-semibold group-hover:text-white text-purple-500">Personalization</h4>
-          <p className="text-center text-base group-hover:text-white/90">Tailored recommendations and reminders to help you stay on top of your health.</p>
+
+        {/* Call to Action */}
+        <div className="bg-gradient-to-r from-[#8E7BEF] to-[#A084E8] rounded-3xl py-12 px-6">
+          <h2 className="text-3xl font-bold text-white text-center mb-6">
+            Join the gewal.lk Community!
+          </h2>
+          <p className="text-lg text-white text-center mb-8 max-w-2xl mx-auto">
+            Get updates on Sri Lanka’s property market, new listings, and exclusive management tips. Sign up for our newsletter and be first to know.
+          </p>
+          <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="px-6 py-3 rounded-lg border-2 border-white w-full sm:w-2/3 placeholder-gray-400"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-white text-[#8E7BEF] hover:bg-[#F5F0FF] font-semibold px-8 py-3 rounded-lg shadow transition"
+            >
+              Subscribe
+            </button>
+          </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
